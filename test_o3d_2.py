@@ -50,5 +50,10 @@ pcd.transform([[1, 0, 0, 0],
                [0, 0, -1, 0],
                [0, 0, 0, 1]])
 
+# Save point cloud file
+output_path = "output_point_cloud.ply"  # .ply, .pcd, .xyz, Etc.
+o3d.io.write_point_cloud(output_path, pcd)
+print(f"✔ Point Cloud Saved: {output_path}")
+
 # Step 9: Visualize
 o3d.visualization.draw_geometries([pcd], window_name="Point Cloud from Depth Pro")
