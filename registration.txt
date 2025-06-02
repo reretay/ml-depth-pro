@@ -1,0 +1,39 @@
+3D Cloud Point의 정합 알고리즘
+
+1. Iterative Closest Point (ICP)
+개요: 가장 널리 사용되는 정합 알고리즘 중 하나로, 두 포인트 클라우드 간의 대응점을 반복적으로 찾아 rigid transformation(회전 + 이동)을 계산합니다.
+변형들:
+Point-to-Point ICP
+Point-to-Plane ICP
+Generalized ICP (GICP)
+장점: 구현이 간단하고 직관적
+단점: 초기 정렬에 민감, 로컬 최적해에 빠질 수 있음
+
+2. Feature-based Registration
+개요: 포인트 클라우드에서 특징점(Feature Point)을 추출하고, 이들 간의 매칭을 통해 정합을 수행합니다.
+사용되는 특징 기술자:
+FPFH (Fast Point Feature Histograms)
+SHOT (Signature of Histograms of Orientations)
+ISS (Intrinsic Shape Signatures)
+장점: 초기 정렬 없이도 가능, 큰 변형에도 강건
+단점: 특징 추출 및 매칭이 복잡하고 계산량이 많음
+
+3. RANSAC 기반 정합
+개요: 특징점 매칭 후, RANSAC(Random Sample Consensus)을 이용해 외란(outlier)을 제거하고 정합을 수행
+장점: 노이즈와 외란에 강건
+단점: 계산 시간이 길 수 있음
+
+4. Deep Learning 기반 정합
+개요: 최근에는 딥러닝을 활용한 정합 기법들이 활발히 연구되고 있습니다.
+대표적인 모델들:
+PointNetLK: PointNet과 Lucas-Kanade 알고리즘을 결합
+Deep Closest Point (DCP): Attention 기반의 포인트 매칭
+RPM-Net: Recurrent 방식으로 정합 수행
+장점: 복잡한 변형에도 강건, 학습 기반으로 일반화 가능
+단점: 학습 데이터 필요, 연산 자원 요구
+
+5. Global Registration + Refinement
+전략:
+Global Registration: 특징 기반 또는 RANSAC으로 초기 정렬
+Local Refinement: ICP나 GICP로 미세 정렬
+장점: 정확도와 강건성 모두 확보 가능

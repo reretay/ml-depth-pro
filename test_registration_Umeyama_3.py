@@ -28,7 +28,7 @@ def umeyama_alignment(source_points, target_points):
 
 # 설정
 input_dir = "output"
-voxel_size = 0.05
+voxel_size = 0.01
 
 # 파일 불러오기
 ply_files = sorted(glob(os.path.join(input_dir, "*.ply")))

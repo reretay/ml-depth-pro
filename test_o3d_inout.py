@@ -31,6 +31,9 @@ for image_path in image_paths:
     image = Image.open(image_path).convert("RGB")
     input_tensor = transform(image).unsqueeze(0)
 
+    model_device = next(model.parameters()).device
+    input_tensor = input_tensor.to(model_device)  # GPU로 이동
+
     # Inference
     with torch.no_grad():
         prediction = model.infer(input_tensor)
