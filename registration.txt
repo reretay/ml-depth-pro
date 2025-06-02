@@ -1,7 +1,9 @@
 3D Cloud Point의 정합 알고리즘
 
 1. Iterative Closest Point (ICP)
-개요: 가장 널리 사용되는 정합 알고리즘 중 하나로, 두 포인트 클라우드 간의 대응점을 반복적으로 찾아 rigid transformation(회전 + 이동)을 계산합니다.
+개요: 가장 널리 사용되는 정합 알고리즘 중 하나로
+두 포인트 클라우드 간의 대응점을 반복적으로 찾아 
+rigid transformation(회전 + 이동)을 계산합니다.
 변형들:
 Point-to-Point ICP
 Point-to-Plane ICP
@@ -10,7 +12,8 @@ Generalized ICP (GICP)
 단점: 초기 정렬에 민감, 로컬 최적해에 빠질 수 있음
 
 2. Feature-based Registration
-개요: 포인트 클라우드에서 특징점(Feature Point)을 추출하고, 이들 간의 매칭을 통해 정합을 수행합니다.
+개요: 포인트 클라우드에서 특징점(Feature Point)을 추출하고
+이들 간의 매칭을 통해 정합을 수행합니다.
 사용되는 특징 기술자:
 FPFH (Fast Point Feature Histograms)
 SHOT (Signature of Histograms of Orientations)
@@ -19,7 +22,8 @@ ISS (Intrinsic Shape Signatures)
 단점: 특징 추출 및 매칭이 복잡하고 계산량이 많음
 
 3. RANSAC 기반 정합
-개요: 특징점 매칭 후, RANSAC(Random Sample Consensus)을 이용해 외란(outlier)을 제거하고 정합을 수행
+개요: 특징점 매칭 후, RANSAC(Random Sample Consensus)을 이용해 
+외란(outlier)을 제거하고 정합을 수행
 장점: 노이즈와 외란에 강건
 단점: 계산 시간이 길 수 있음
 
@@ -37,3 +41,9 @@ RPM-Net: Recurrent 방식으로 정합 수행
 Global Registration: 특징 기반 또는 RANSAC으로 초기 정렬
 Local Refinement: ICP나 GICP로 미세 정렬
 장점: 정확도와 강건성 모두 확보 가능
+
+
+>>> ICP 정합의 경우 회전과 이동만을 계산하기 때문에 스케일은 고려하지 않음.
+따라서 카메라의 시점에 따라 스케일이 다를 경우 정상적인 정합 불가능.
+사전 정규화를 통해 동일한 스케일로 정규화한 후 ICP를 수행하는 방법이 있음.
+또한 Similarity transformation ICP를 이용한 스케일도 함께 추정하는 확장된 ICP도 있음
